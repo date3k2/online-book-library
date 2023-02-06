@@ -1,0 +1,46 @@
+<div class="search">
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Search by book title, author" #searchInput autocomplete="off"
+    (keyup)="checkInput($event,searchInput.value)">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</div>
+<div class="categories">
+  <h2>Category</h2>
+<mat-selection-list [multiple]="false" >
+  <div *ngFor="let category of categories">
+  <mat-list-option 
+  (selectedChange)="canLoad($event,category.categoryName)"
+  >
+  {{category.categoryName}}
+  </mat-list-option>
+  <mat-divider></mat-divider>
+</div>
+</mat-selection-list>
+</div>
+<h1 *ngIf="isEmpty">Không tìm thấy kết quả nào</h1>
+  <div style="display: flex;flex-wrap: wrap; width: 1200px">
+
+    <mat-card @fade  *ngFor="let bookInfo of booksInfo;index as i" style="cursor: pointer;" matRipple>
+      <a [routerLink]="['/book', bookInfo.bookId]"
+      [matTooltip]="bookInfo.title" [matTooltipDisabled]="bookInfo.title.length<20">
+    <img mat-card-image src="https://picsum.photos/900/500">
+    <mat-card-content style="max-width:200px;white-space: nowrap;text-overflow: ellipsis;"><i><strong>{{bookInfo.title}}</strong></i></mat-card-content>
+    <mat-card-footer><i> {{bookInfo.author}}</i></mat-card-footer>
+  </a>
+  </mat-card>
+</div>
+<div style=" position: fixed;
+bottom:0;
+width: 100%;">
+<mat-paginator style="background-color:rgb(88, 243, 109);"
+               [length]="numberOfBooks"
+               pageSize="10"
+               showFirstLastButtons="true"
+               hidePageSize="true"
+               aria-label="Select page"
+               (page)="loadBookTags($event,searchInput.value)"
+               >
+</mat-paginator>
+</div>
+

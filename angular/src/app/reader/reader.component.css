@@ -1,0 +1,26 @@
+
+.search {
+    display: flex;
+    justify-content: center;
+}
+.mat-mdc-form-field {
+    flex-direction: row !important;
+    margin-top:-45px !important ;
+}
+.categories {
+    position: absolute;
+    right: 0;
+    /* display: flex;
+    justify-content: center; */
+    /* overflow: hidden; */
+    text-align: left;
+}
+.mdc-list-item.mdc-list-item--with-one-line {
+    width: 210px !important;
+}
+img {
+    background-size: cover; 
+    margin-bottom: 0;
+    height: 200px;
+    width: 200px;
+}

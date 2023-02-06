@@ -1,0 +1,34 @@
+<mat-card style="display: flex;flex-direction: row; background-color: bisque;">
+  <img src="https://picsum.photos/200/200/?random=1" style="height:200px;
+    width:200px;margin-right: 20px;">
+  <div *ngIf="bookInfo">
+    <mat-card-title>{{bookInfo.title! }}</mat-card-title>
+    <mat-card-content> Tác giả : <i>{{bookInfo.author }} </i></mat-card-content>
+    <mat-card-content>Số trang: {{bookInfo.numberOfPages}}</mat-card-content>
+    <mat-card-content>Thể loại :
+      <a [routerLink]="['/category',simplifyBookCategory(bookInfo.categoryName!)]"><strong>{{bookInfo.categoryName
+          }}</strong> </a>
+    </mat-card-content>
+    <mat-card-content>
+      <a mat-button (click)="openDialog(1);" style="background-color: rgb(58, 185, 158);">Đọc ngay 😍</a>
+    </mat-card-content>
+  </div>
+</mat-card>
+
+<h2 style="margin:0 16px">Các trang đã đánh dấu</h2>
+<mat-spinner *ngIf="isLoading;else data" style="margin:0 16px"></mat-spinner>
+<ng-template #data>
+  <mat-selection-list [multiple]="false" *ngIf="markedPages.length>0 else not">
+    <div *ngFor="let markedPage of markedPages">
+      <mat-list-option (click)="openDialog(markedPage)"> Trang số
+        {{markedPage}}
+      </mat-list-option>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-selection-list>
+  <ng-template #not>
+    <mat-selection-list [multiple]="false" [disabled]="true">
+      <mat-list-option>Bạn chưa đánh dấu trang nào</mat-list-option>
+    </mat-selection-list>
+  </ng-template>
+</ng-template>

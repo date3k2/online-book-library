@@ -1,0 +1,32 @@
+<div style="display:flex;justify-content: flex-end;">
+    <strong style="font-size: 18px; margin-right:30px;display: flex;align-items: center;justify-content: center;"> Trang
+        {{page}}</strong>
+    <button>
+        <mat-icon *ngIf="marked[page!] else unmarked " (click)="togglemark()">bookmark</mat-icon>
+        <ng-template #unmarked>
+            <mat-icon (click)="togglemark()">bookmark_border</mat-icon>
+        </ng-template>
+    </button>
+    <button (click)="firstPage()" matTooltip="First Page">
+        <mat-icon>first_page</mat-icon>
+    </button>
+    <button (click)="prevPage()" matTooltip="Previous Page">
+        <mat-icon>navigate_before</mat-icon>
+    </button>
+    <button (click)="nextPage()" matTooltip="Next Page">
+        <mat-icon>navigate_next</mat-icon>
+    </button>
+    <button (click)="lastPage()" matTooltip="Last Page">
+        <mat-icon>last_page</mat-icon>
+    </button>
+    <button (click)="zoomIn()" [matTooltip]="(zoom|percent) || '0'">
+        <mat-icon>zoom_in</mat-icon>
+    </button>
+    <button (click)="zoomOut()" [matTooltip]="(zoom|percent) || '0'">
+        <mat-icon>zoom_out</mat-icon>
+    </button>
+    <button mat-dialog-close matTooltip="Close"><mat-icon>close</mat-icon></button>
+</div>
+<pdf-viewer #pdfViewer [src]="getPage(page)" [original-size]="false" [show-all]="false"
+    style="width: 100%; height: 94%;" [show-borders]="true" [zoom]="zoom">
+</pdf-viewer>

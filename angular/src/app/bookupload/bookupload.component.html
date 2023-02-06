@@ -1,0 +1,35 @@
+<form [formGroup]="uploadForm" autocomplete="off" (ngSubmit)="onSubmit()" class="form">
+  <div class="upload">
+    <h1>Đóng góp tài liệu</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Title" formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Author</mat-label>
+      <input matInput placeholder="Author" formControlName="author">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <ngx-mat-file-input class="file-input" formControlName="file" accept="application/pdf"
+        placeholder="Choose a PDF file">
+      </ngx-mat-file-input>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="category" #categorySelect (selectionChange)="onCategoryChange()">
+        <mat-option *ngFor="let category of categories"
+          [value]="category.categoryId">{{category.categoryName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="uploadForm.value.category === '0' ">
+      <mat-label>Custom Category</mat-label>
+      <input matInput type="text" formControlName="customCategory">
+    </mat-form-field>
+    <div class="submit-form-button">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!uploadForm.valid">Send</button>
+    </div>
+  </div>
+</form>

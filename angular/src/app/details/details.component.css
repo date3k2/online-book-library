@@ -1,0 +1,12 @@
+button {
+  margin-left: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+.material-icons {
+  font-size: 30px;
+}
+.mat-icon {
+  height: 28px !important;
+  width: 28px !important;
+}
