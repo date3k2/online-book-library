@@ -1,5 +1,5 @@
-# online-book-library
-1. Front End
+# A web app for reading and contributing PDF book online, using Angular and ASP .NET framework.
+1. Frontend
 
     angular cli version: 15.0.2
 
